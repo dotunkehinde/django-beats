@@ -4,15 +4,19 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<a href="{% url 'feed:post' %}">Upload a new image</a>
-<hr>
+    <div class="row">
     {% for post in posts %}
-        <a href="{% url 'feed:detail' post.id %}">
-        {{ post.text }} <br>
-        {% thumbnail post.image "200x200" crop="center" as im %}
-            <img src="{{ im.url}}" width="{{ im.width}}" height="{{ im.height}}">
-        {% endthumbnail %}        
-        </a>
-    <hr>
-    {% endfor%}
+        <div class="col-sm-6 col-md-4">
+            <div class="card" style="width: 18rem;">
+                {% thumbnail post.image "200x200" crop="center" as im %}
+                    <img src="{{ im.url}}" class="card-img-top" alt="...">
+                {% endthumbnail %}     
+                <div class="card-body mt">
+                    <p class="card-text">{{ post.text }}</p>
+                    <a href="{% url 'feed:detail' post.id %}" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
 {% endblock %}
