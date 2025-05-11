@@ -4,6 +4,8 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+<a href="{% url 'feed:post' %}">Upload a new image</a>
+<hr>
     {% for post in posts %}
         <a href="{% url 'feed:detail' post.id %}">
         {{ post.text }} <br>
